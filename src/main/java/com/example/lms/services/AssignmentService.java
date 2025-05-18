@@ -13,11 +13,6 @@ public class AssignmentService {
         return assignmentRepository.save(assignment);
     }
 
-    //create assignment ->instructor
-    public void createAssignment(Assignment assignment) {
-        assignmentRepository.save(assignment);
-    }
-
     // grading and feedback -> instructor
     public Assignment gradeAssignment(Integer assignmentId, double grade, String feedback) {
         Assignment assignment = assignmentRepository.findById(assignmentId).orElse(null);
@@ -27,5 +22,10 @@ public class AssignmentService {
             return assignmentRepository.save(assignment);
         }
         return null;
+    }
+    
+    //create assignment ->instructor
+    public void createAssignment(Assignment assignment) {
+        assignmentRepository.save(assignment);
     }
 }
