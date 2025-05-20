@@ -72,4 +72,17 @@ public class QuizService {
     public Optional<QuizModel> getQuizById(Long quizId) {
         return quizRepository.findById(quizId);
     }
+    public int autoGrade(QuizSubmission submission) {
+        int score = 0;
+    
+        for (QuestionModel question : submission.getQuestions()) {
+            String submittedAnswer = submission.getAnswer(question.getId());
+    
+            if (question.getCorrectAnswer().equalsIgnoreCase(submittedAnswer)) {
+                score++;
+            }
+        }
+    
+        return (score * 100) / submission.getQuestions().size(); // Return percentage
+    }
 }
