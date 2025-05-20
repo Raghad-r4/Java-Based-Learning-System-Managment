@@ -63,4 +63,9 @@ public class QuizController {
         QuizModel submittedQuiz = quizService.submitQuiz(quiz);
         return ResponseEntity.ok(submittedQuiz);
     }
+    @PostMapping("/quiz/submit")
+public ResponseEntity<?> submitQuiz(@RequestBody QuizSubmission submission) {
+    int grade = quizService.autoGrade(submission);
+    return ResponseEntity.ok("Your score: " + grade + "%");
+}
 }
