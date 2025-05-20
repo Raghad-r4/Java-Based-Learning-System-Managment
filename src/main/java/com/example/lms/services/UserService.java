@@ -8,6 +8,8 @@ import com.example.lms.repositories.StudentRepository;
 import com.example.lms.repositories.UserRepository;
 import com.example.lms.springsecurity.jwtService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -94,7 +96,9 @@ public class UserService {
 
         return ResponseEntity.ok(users);
     }
-
+    public User getUserByUsername(String username) {
+        return userRepository.findByEmail(username).orElse(null);
+    }
     @PostMapping("/editprofile")
     public ResponseEntity<Object> editProfile(@RequestBody Profile userProfile) {
 
